@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List
 from core.git_handler import GitFileStat
 
-def infer_projrct_type(file_stats: List[GitFileStat]) -> str:
+def infer_project_type(file_stats: List[GitFileStat]) -> str:
     if any(f.path.endswith(".py") for f in file_stats):
         return "Python"
     if any(f.path.endswith(".ts") or f.path.endswith(".tsx") for f in file_stats):
