@@ -1,65 +1,76 @@
 # GitPilot
 
-GitPilot is an in-progress Git workflow assistant.
+GitPilot is a local-first Git workflow assistant MVP.
 
-Current repo state is an MVP scaffold with one core implementation (`core/git_handler.py`) and placeholders for CLI/API/VS Code integration.
+This repository is being built in a guided mode:
+- one file at a time
+- full code explanation for each file
+- user types code manually
 
-## Current Status
-- `core/git_handler.py` is implemented (Git subprocess wrapper + helper methods).
-- `core/ai_client.py`, `core/diff_parser.py`, `core/executor.py`, `core/intent_parser.py`, `core/risk_analyzer.py` are placeholders.
-- `main.py`, `cli.py`, and `server.py` are placeholders.
-- `vscode-extension/` is scaffolded but currently empty.
+## Current Progress
 
-## Implemented Module
-`core/git_handler.py` currently defines:
-- `GitCommandError`
-- `GitFileStat`
-- `GitHandler`
+Implemented core modules:
+- `core/git_handler.py`
+- `core/diff_parser.py`
+- `core/ai_client.py`
+- `core/intent_parser.py`
+- `core/risk_analyzer.py`
+- `core/executor.py`
 
-`GitHandler` includes methods for:
-- Running arbitrary git commands
-- Verifying repository context
-- Reading status and diffs
-- Getting numstat summaries
-- Staging, committing, and pushing
+Scaffolded but not yet filled in this pass:
+- `cli.py`
+- `server.py`
+- `main.py`
+- `vscode-extension/` runtime wiring
 
-## Requirements
-Dependencies in `requirements.txt`:
-- `rich>=13.7.0`
-- `requests>=2.32.0`
-- `fastapi>=0.111.0`
-- `uvicorn>=0.30.0`
-- `pydantic>=2.7.0`
+## MVP Scope
 
-## Setup
+Target MVP includes:
+- Smart commit suggestion
+- Commit risk warning
+- Intent to Git command mapping
+- Safe command execution checks
+- VS Code extension wrapper
+
+Out of scope for MVP:
+- PR automation
+- Team dashboard
+- Analytics
+
+## Tech Stack
+
+Backend:
+- Python
+- FastAPI
+- subprocess-based git integration
+
+LLM:
+- Local Ollama (default free path)
+- Optional Hugging Face inference fallback
+
+Frontend integration:
+- VS Code extension (TypeScript)
+
+## Install
+
 ```bash
 python -m venv .venv
 . .venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-## Usage (Current)
-There is no runnable app entrypoint yet.
-Use modules directly while development is in progress.
+## Development Flow
 
-Example:
-```python
-from core.git_handler import GitHandler
+1. Implement backend core modules.
+2. Add API surface in `server.py`.
+3. Add CLI in `cli.py` and `main.py`.
+4. Connect VS Code extension to local API.
+5. Validate end-to-end in Extension Development Host.
 
-git = GitHandler('.')
-print(git.run(['status', '--short'], check=False))
-```
+## Project Layout
 
-## Project Structure
-- `core/`: backend building blocks
-- `main.py`: planned application entrypoint
-- `cli.py`: planned CLI interface
-- `server.py`: planned FastAPI server
-- `vscode-extension/`: planned VS Code integration
-
-## Roadmap
-- Implement parser, risk analysis, and executor layers
-- Add usable CLI commands
-- Expose backend via FastAPI endpoints
-- Connect and test VS Code extension workflow
-- Add tests for Git command handling and failure cases
+- `core/`: backend domain modules
+- `server.py`: FastAPI endpoints for extension/CLI
+- `cli.py`: terminal flow for smart commit + intent execution
+- `main.py`: app entrypoint
+- `vscode-extension/`: VS Code extension source/build/debug config
