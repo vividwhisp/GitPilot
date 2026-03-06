@@ -16,10 +16,10 @@ Implemented core modules:
 - `core/intent_parser.py`
 - `core/risk_analyzer.py`
 - `core/executor.py`
+- `server.py`
 
 Scaffolded but not yet filled in this pass:
 - `cli.py`
-- `server.py`
 - `main.py`
 - `vscode-extension/` runtime wiring
 
@@ -66,6 +66,8 @@ pip install -r requirements.txt
 3. Add CLI in `cli.py` and `main.py`.
 4. Connect VS Code extension to local API.
 5. Validate end-to-end in Extension Development Host.
+
+Current next step: implement `cli.py`.
 
 ## Project Layout
 
